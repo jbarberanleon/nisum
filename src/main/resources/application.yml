@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    '[com.example.testnisum]': INFO
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE;NON_KEYWORDS=user
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      schema-locations: classpath:script.sql
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+error:
+  message:
+    already-registered-user: already registered user
+    invalid-email: invalid email
+    invalid-password: invalid password
+    user-not-found: user not found
+
+app:
+  configurations:
+    email-pattern: "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+    password-pattern: ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
